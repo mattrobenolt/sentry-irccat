@@ -10,33 +10,29 @@ An extension for Sentry which integrates with irccat (or compatible servers).
 from setuptools import setup, find_packages
 
 
-tests_require = [
-    'nose>=1.1.2',
-]
-
 install_requires = [
-    'sentry>=4.6.0',
+    'sentry>=5.0.0',
 ]
 
 setup(
     name='sentry-irccat',
-    version='0.1.0',
+    version='0.2.0',
     author='Russ Garrett',
     author_email='russ@garrett.co.uk',
-    url='http://www.github.com/russss',
+    url='https://github.com/russss/sentry-irccat',
     description='A Sentry extension which integrates with irccat',
     long_description=__doc__,
     license='BSD',
     packages=find_packages(exclude=['tests']),
     zip_safe=False,
     install_requires=install_requires,
-    tests_require=tests_require,
-    extras_require={'test': tests_require},
-    test_suite='runtests.runtests',
     entry_points={
+       'sentry.apps': [
+            'irccat = sentry_irccat'
+       ],
        'sentry.plugins': [
-            'irccat = sentry_irccat.plugin:IRCCatMessage'
-        ],
+            'irccat = sentry_irccat.models:IRCCatMessage'
+       ],
     },
     include_package_data=True,
     classifiers=[
